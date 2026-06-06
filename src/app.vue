@@ -3,7 +3,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <button class="menu-toggle" @click="toggleSidebar">☰</button>
-        <div class="logo"><span>EM</span>英语模块</div>
+        <div class="logo"><span>EM</span>模块英语</div>
       </div>
       <div class="controls">
         <button @click="prev">◀</button>
