@@ -3,7 +3,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <button class="menu-toggle" @click="toggleSidebar">☰</button>
-        <div class="logo"><span>EM</span>模块英语</div>
+        <div class="logo"><span>ME</span>模块英语</div>
       </div>
       <div class="controls">
         <button @click="prev">◀</button>
@@ -345,7 +345,7 @@ function getBestVoice() {
   
   const voices = window.speechSynthesis.getVoices()
   // 按优先级选择本地英语语音
-  const preferredNames = ['Google', 'Microsoft', 'Samantha', 'David', 'Zira', 'Alex', 'Siri']
+  const preferredNames = ['Microsoft', 'Samantha', 'David', 'Zira', 'Alex', 'Siri']
   
   // 优先选择本地离线语音
   let bestVoice = voices.find(v => 
