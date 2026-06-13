@@ -294,3 +294,235 @@ code {
     border-right-color: var(--border);
   }
 }
+/* ========================================
+   模块英语 · 新增样式（追加到文件末尾）
+   ======================================== */
+
+/* 主题变量 - 扩展 */
+:root {
+  --surface: #ffffff;
+  --surface2: #f8f9fc;
+  --text2: #4a4d5e;
+  --text3: #86899b;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --accent-light: #e8edfe;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1119;
+  --surface: #1a1d28;
+  --surface2: #222633;
+  --text: #e2e4ec;
+  --text2: #b0b5c6;
+  --text3: #7c8195;
+  --border: #2d3142;
+  --accent: #6c8cff;
+  --accent-light: #2a2f4a;
+}
+
+[data-theme="eyecare"] {
+  --bg: #fdf6e3;
+  --surface: #fefcf3;
+  --surface2: #f5ecd7;
+  --text: #4a3f35;
+  --text2: #6b5b4e;
+  --text3: #8b7a68;
+  --border: #d5c9b5;
+  --accent: #859900;
+  --accent-light: #e6e8c3;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* 语法颜色 */
+.syntax-subject { color: #2563eb; border-left-color: #2563eb; background: #2563eb10; }
+.syntax-predicate { color: #f97316; border-left-color: #f97316; background: #f9731610; }
+.syntax-object { color: #8b5cf6; border-left-color: #8b5cf6; background: #8b5cf610; }
+.syntax-attribute { color: #eab308; border-left-color: #eab308; background: #eab30810; }
+.syntax-adverbial { color: #06b6d4; border-left-color: #06b6d4; background: #06b6d410; }
+.syntax-complement { color: #ef4444; border-left-color: #ef4444; background: #ef444410; }
+
+/* 公共组件样式 */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text2);
+  font-size: 0.9rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h3 {
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--text2);
+}
+
+/* 单词弹窗 */
+.word-tooltip {
+  position: fixed;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1100;
+  min-width: 100px;
+  max-width: 200px;
+  pointer-events: none;
+}
+
+.tooltip-word {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.tooltip-pos {
+  font-size: 0.65rem;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.tooltip-meaning {
+  font-size: 0.75rem;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+/* Toast 消息 */
+.toast-message {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  z-index: 1200;
+  animation: fadeInUp 0.3s ease;
+}
+
+.toast-message.success { background: var(--success); color: white; }
+.toast-message.error { background: var(--error); color: white; }
+.toast-message.info { background: var(--accent); color: white; }
+.toast-message.warning { background: var(--warning); color: white; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 按钮通用样式 */
+.btn {
+  padding: 8px 16px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: var(--surface2);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.btn-danger {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+/* 响应式断点 */
+@media screen and (max-width: 768px) {
+  .modal { width: 95%; padding: 16px; }
+  .word-tooltip { max-width: 160px; font-size: 12px; }
+  .toast-message { bottom: 20px; font-size: 12px; padding: 8px 16px; }
+  .card { padding: 12px; }
+  .btn { padding: 6px 12px; font-size: 0.75rem; }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .modal { max-width: 400px; }
+}
