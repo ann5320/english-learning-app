@@ -129,9 +129,10 @@
           <div v-if="loading" class="loading">加载句子中...</div>
           <div v-else-if="filteredSentences.length === 0" class="loading">暂无句子，请检查数据库</div>
           <div v-else class="sentence-card">
+            <!-- 红色心形收藏按钮 -->
             <button class="star-collect-btn" @click.stop="toggleCurrentSentenceCollect">
               <span class="star-icon" :class="{ 'star-filled': isCurrentSentenceCollected }">
-                {{ isCurrentSentenceCollected ? '★' : '☆' }}
+                {{ isCurrentSentenceCollected ? '❤️' : '♡' }}
               </span>
             </button>
             <div class="sentence-english" @click="speakFull">
@@ -685,21 +686,15 @@ function handleDocumentClick(e) {
   clearAllHighlights()
 }
 
-// ========== 修正后的拼写顺序 ==========
-// 顺序：按语法模块中的短语小模块依次处理
-// 每个短语小模块：先考该短语内的所有单词 → 再考该短语整体
-// 然后下一个短语小模块：单词 → 短语整体 → ... → 最后整句
+// 拼写顺序
 function buildTestItemsFromSentence(sentence) {
   const items = []
-  const seenContent = new Set()  // 全局去重
+  const seenContent = new Set()
   
   if (!sentence.modules) return items
   
-  // 按语法模块顺序处理
   for (const mod of sentence.modules) {
-    // 按短语小模块顺序处理
     for (const phrase of mod.phrases) {
-      // 1. 先考当前短语内的所有单词
       for (const word of phrase.words) {
         const content = word.w.toLowerCase()
         if (!seenContent.has(content)) {
@@ -712,8 +707,6 @@ function buildTestItemsFromSentence(sentence) {
           })
         }
       }
-      
-      // 2. 再考当前短语整体
       const phraseContent = phrase.en.toLowerCase()
       if (!seenContent.has(phraseContent)) {
         seenContent.add(phraseContent)
@@ -727,7 +720,6 @@ function buildTestItemsFromSentence(sentence) {
     }
   }
   
-  // 3. 最后考整句
   const sentenceKey = sentence.english.toLowerCase()
   if (!seenContent.has(sentenceKey)) {
     items.push({ 
@@ -1061,18 +1053,18 @@ onUnmounted(() => {
 .logo-purple { cursor: pointer; transition: opacity 0.2s; }
 .logo-purple:hover { opacity: 0.85; }
 .logo-bg {
-  background: #6366f1 !important;
+  background: #5052f0 !important;
   color: white;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.3px;
   display: inline-block;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.25);
 }
 
-/* 星星按钮 */
+/* 红色心形收藏按钮 */
 .star-collect-btn {
   position: absolute;
   top: 18px;
@@ -1081,23 +1073,25 @@ onUnmounted(() => {
   border: none;
   cursor: pointer;
   z-index: 10;
-  padding: 4px;
-  border-radius: 20px;
+  padding: 6px;
+  border-radius: 50%;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .star-collect-btn:hover {
-  transform: scale(1.1);
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.06);
+  transform: scale(1.05);
 }
 .star-icon {
-  font-size: 22px;
-  font-weight: 400;
-  color: #cbd5e1;
+  font-size: 20px;
+  font-weight: normal;
+  color: #94a3b8;
   transition: all 0.2s ease;
-  display: inline-block;
 }
 .star-icon.star-filled {
-  color: #f5a623;
+  color: #ec0a0a;
 }
 .sentence-card { position: relative; }
 
@@ -1461,7 +1455,7 @@ body { font-family: system-ui, 'Segoe UI', 'PingFang SC', sans-serif; background
   .controls button, .controls select { padding: 3px 6px; font-size: 0.65rem; }
   .page-indicator { font-size: 0.65rem; }
   .logo { font-size: 0.85rem; }
-  .logo-bg { padding: 4px 8px; font-size: 0.7rem; }
+  .logo-bg { padding: 2px 6px; font-size: 0.6rem; }
   .main-area { padding: 12px; }
   .sentence-card { padding: 14px; }
   .sentence-english { font-size: 1.1rem; text-indent: 1.5em; }
